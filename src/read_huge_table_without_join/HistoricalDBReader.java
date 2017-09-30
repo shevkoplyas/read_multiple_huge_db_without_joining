@@ -45,7 +45,7 @@ public class HistoricalDBReader implements Comparable<HistoricalDBReader> {
         try {
             Class.forName("org.sqlite.JDBC");
             db_connection = DriverManager.getConnection("jdbc:sqlite:" + db_filename);
-            System.out.println("SymbolStore::open_db(): db successfully opened: " + db_filename);
+            // System.out.println("SymbolStore::open_db(): db successfully opened: " + db_filename);
 
         } catch (Exception ex) {
             String error_message = Aid.getExceptionDetails("Exception cought while in symbol_store.open_db(): ", ex);

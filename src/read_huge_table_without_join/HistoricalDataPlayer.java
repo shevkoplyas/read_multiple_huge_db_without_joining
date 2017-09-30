@@ -98,6 +98,11 @@ public class HistoricalDataPlayer {
 
     }
 
+    // let's overload historical_data_replay just for convenience (to mimic default from/to args)
+    public void historical_data_replay(String historical_data_folder) {
+        historical_data_replay(historical_data_folder, 0, 0);
+    }
+
     // delete this when class moved to "speculant" since this method is in Aid:
     public List<File> get_files_by_mask(String path_to_dir) {
         Path dir = Paths.get(path_to_dir);

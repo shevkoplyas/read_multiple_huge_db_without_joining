@@ -40,15 +40,23 @@ public class Read_huge_table_without_join {
     }
 
     public void main2() {
-        Path path = FileSystems.getDefault().getPath(".");
 
-        System.out.println("path to pwd: "+path.toUri().toString());
+        // algo instance will get on_bar() callbacks from the HistoricalDataPlayer
         Algo algo = new Algo();
 
+        // path to the folder with all the sqlite3 db files
         String historical_data_folder = "./fake_historical_bars_databases";
-        long from_epoch_s = 1222;
-        long to_epoch_s = 1333;
+
+        // 1st example: replay all available data
+        System.out.println("1st example: replay all available data");
         HistoricalDataPlayer hdbr = new HistoricalDataPlayer(algo);
+        hdbr.historical_data_replay(historical_data_folder);
+
+        // 2nd example: replay historical bars only from given time range
+        long from_epoch_s = 1231;
+        long to_epoch_s = 1233;
+        System.out.println("\n2nd example: replay historical bars only from given time range [" + from_epoch_s + ", " + to_epoch_s + "]");
+        hdbr = new HistoricalDataPlayer(algo);
         hdbr.historical_data_replay(historical_data_folder, from_epoch_s, to_epoch_s);
     }
 
