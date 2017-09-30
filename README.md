@@ -92,10 +92,10 @@ Alternatively just use "./compile" and "./run" scripts to start this example wit
 # Rough scatch on the read multiple tables logic (stored to ./doc/ folder as .png image):
 ![alt text](https://raw.githubusercontent.com/shevkoplyas/Read_multiple_huge_DBs_without_joining/master/doc/Read_multiple_huge_DBs_without_joining.png)
 
-                    < br />
-Cheers,             < br />
-Dmitry Shevkoplyas  < br />
-https://dimon.ca/   < br />
+                    
+Cheers,             
+Dmitry Shevkoplyas  
+https://dimon.ca/   
 
 ps: Here's the "create table" statement for all sqlite3 files:
       CREATE TABLE IF NOT EXISTS historical_data(epoch_s int PRIMARY KEY, open real, high real, low real, close real, volume int, barCount int, WAP real);
