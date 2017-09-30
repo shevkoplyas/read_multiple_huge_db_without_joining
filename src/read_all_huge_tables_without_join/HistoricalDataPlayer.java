@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package read_huge_table_without_join;
+package read_all_huge_tables_without_join;
 
 import java.io.File;
 import java.io.IOException;

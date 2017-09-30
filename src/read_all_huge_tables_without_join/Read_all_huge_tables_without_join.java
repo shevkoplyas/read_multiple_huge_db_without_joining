@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package read_huge_table_without_join;
+package read_all_huge_tables_without_join;
 
-//public class Read_huge_table_without_join {
+//public class Read_all_huge_tables_without_join {
 //
 //    /**
 //     * @param args the command line arguments
@@ -24,18 +24,14 @@ import java.io.IOException;
 import java.nio.*;
 import java.nio.file.*;
 import java.io.File;
-/*
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
- */
+
 
 import java.util.*;  // for ArrayList, List
 
-public class Read_huge_table_without_join {
+public class Read_all_huge_tables_without_join {
 
     public static void main(String[] args) {
-        Read_huge_table_without_join asdf = new Read_huge_table_without_join();
+        Read_all_huge_tables_without_join asdf = new Read_all_huge_tables_without_join();
         asdf.main2();
     }
 

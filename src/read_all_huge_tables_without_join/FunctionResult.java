@@ -1,4 +1,4 @@
-package read_huge_table_without_join;
+package read_all_huge_tables_without_join;
 
 class FunctionResult {
 

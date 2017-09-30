@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir ./build 2>/dev/null
+
+javac \
+  -d ./build \
+  -sourcepath "src/" \
+  -classpath  "lib/sqlite-jdbc-3.8.11.2.jar" \
+  src/read_all_huge_tables_without_join/Read_all_huge_tables_without_join.java

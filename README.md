@@ -1,17 +1,17 @@
 # What's it all about
 
-The goal of this 1-evening project is to prototype one of the core mechanisms of
-backtest engine, which supposed to read hundreds of historical bars databases in
-parallel sequentially and all ordered by bar's timestamp, but wihout "join".
+The goal of this 1-evening exercise is to prototype one of the core mechanisms of
+algo-trading backtest engine, which supposed to read hundreds of historical bars
+databases/tables in parallel sequentially and all ordered by bar's timestamp,
+but wihout using "join".
 
-The problem is the size of the data. For example 10 years of 1-minute bars for
+The problem we're solving here is the size of the data.
+For example 10 years of 1-minute bars for
 S&P500 components takes about 40 GByte of sqlite3 db files (1 db file per one symbol).
 And with limitted RAM we simply can't join them all ans then sort. We'll have
 to open all 500 DBs, then "select *" ordered by timestamp and then manipulate
 the array of "cursors" in order to read all 500 db/tables strictly sequentially
 all ordered in time.
-
-The project tested on NetBeans 8.1 (java version "1.8.0_92").
 
 As a 1st step let's generate 333 fake historical db files with bogus data by
 running included ruby script "./create_N_databases.rb". Its output is stored
@@ -20,11 +20,10 @@ those generated bogus .db files as a part of project, so you don't have to
 generate new ones).
 
 Next step is to look at the java source code:
-  - class Read_huge_table_without_join has main() function, which
-    creates a new instance of "HistoricalDataPlayer" and call for "historical_data_replay"
-    passing reference to algo, which will get "on_bar()" callbacks along with
-    from_epoch_s, to_epoch_s values which would say which interval we want to replay
-    in our backtest scenario. Leaving values out and calling:
+  - class Read_all_huge_tables_without_join creates a new instance of "HistoricalDataPlayer" 
+    and calls for "historical_data_replay" passing reference to algo, which will get "on_bar()"
+    callbacks along with from_epoch_s, to_epoch_s values which would say which interval we want
+    to replay in our backtest scenario. Leaving values out and calling:
 
         // 1st example: replay all available data
         HistoricalDataPlayer hdbr = new HistoricalDataPlayer(algo);
@@ -70,6 +69,20 @@ more than one algo might be interested in "subscribing" to replay and yes - some
 along the way in the middle of replay one of algos might decide to add more symbols
 into subscription symbol set, but all these are outside of the scope of this "how to select from multiple huge DB/tables without join" example.
 
+# How to compile / run
+
+The project was built/tested on NetBeans 8.1 (java version "1.8.0_92").
+To compile under NetBeans: don't forget to add sqlite JDBC dependency:
+right mouse click on the project -> properties -> libraries -> "Add JAR/Folder" button -> browse to the lib/sqlite-jdbc-3.8.11.2.jar file.
+
+Alternatively just use "./compile" and "./run" scripts to start this example without any IDE from command line.
+
+# Rough scatch on the read multiple tables logic (stored to ./doc/ folder as .png image):
+![alt text](https://raw.githubusercontent.com/shevkoplyas/Read_multiple_huge_DBs_without_joining/doc/Read_multiple_huge_DBs_without_joining.png)
+
 Cheers,
 Dmitry Shevkoplyas
 https://dimon.ca/
+
+ps: Here's the "create table" statement for all sqlite3 files:
+      CREATE TABLE IF NOT EXISTS historical_data(epoch_s int PRIMARY KEY, open real, high real, low real, close real, volume int, barCount int, WAP real);
