@@ -36,8 +36,6 @@ Next step is to look at the java source code:
         hdbr.historical_data_replay(historical_data_folder, from_epoch_s, to_epoch_s);
 
   - class HistoricalDBReader handles single db file (opens db, select rows, holds the cursor (ResultSet rs) for single table from that file)
-  
-  - 
 
   - and "the meat" of the project is inside class HistoricalDataPlayer!
     HistoricalDataPlayer would create an array of HistoricalDBReaders like this:
