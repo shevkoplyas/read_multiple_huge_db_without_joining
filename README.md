@@ -78,7 +78,7 @@ right mouse click on the project -> properties -> libraries -> "Add JAR/Folder" 
 Alternatively just use "./compile" and "./run" scripts to start this example without any IDE from command line.
 
 # Rough scatch on the read multiple tables logic (stored to ./doc/ folder as .png image):
-![alt text](https://raw.githubusercontent.com/shevkoplyas/Read_multiple_huge_DBs_without_joining/doc/Read_multiple_huge_DBs_without_joining.png)
+![alt text](https://raw.githubusercontent.com/shevkoplyas/Read_multiple_huge_DBs_without_joining/master/doc/Read_multiple_huge_DBs_without_joining.png)
 
 Cheers,
 Dmitry Shevkoplyas
