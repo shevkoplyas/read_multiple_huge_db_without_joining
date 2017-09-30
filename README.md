@@ -73,10 +73,13 @@ Now let's run it, here's the end of the output (only covers 2nd example):
 > Algo.on_bar(): bar_epoch_s=1233, sym=symbol_60
 
 As you can see our "algo" got "on_bar()" in ascending order (epoch_s lineary growing).
-And yes, we should pass "bar" object (which does not even exist in this demo) and
+And yes, in ideal world we should pass "bar" object (which does not even exist in this demo) instead of just "long epoch_s" and
 more than one algo might be interested in "subscribing" to replay and yes - somewhere
 along the way in the middle of replay one of algos might decide to add more symbols
-into subscription symbol set, but all these are outside of the scope of this "how to select from multiple huge DB/tables without join" example.
+into subscription symbol set, and actually bars should not go directly to algo, but there should be something
+inetween, which analyze each bar timestamp and decides how many fake "heartbeat callbacks" it should send to all algos
+before allowing them to see next bar etc., but all these are outside of the scope of this simple
+"how to select from multiple huge DB/tables without join" example.
 
 # How to compile / run
 
