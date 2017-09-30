@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// class HistoricalDBReader handles single db file (and single table from that file)
+// class HistoricalDBReader handles single db file (opens db, select rows, holds the cursor (ResultSet rs) for single table from that file)
 //
 public class HistoricalDBReader implements Comparable<HistoricalDBReader> {
 

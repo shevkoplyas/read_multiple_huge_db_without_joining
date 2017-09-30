@@ -8,7 +8,7 @@ but wihout using "join".
 The problem we're solving here is the size of the data.
 For example 10 years of 1-minute bars for
 S&P500 components takes about 40 GByte of sqlite3 db files (1 db file per one symbol).
-And with limitted RAM we simply can't join them all ans then sort. We'll have
+And with limitted RAM we simply can't join them all and then sort. We'll have
 to open all 500 DBs, then "select *" ordered by timestamp and then manipulate
 the array of "cursors" in order to read all 500 db/tables strictly sequentially
 all ordered in time.
@@ -16,13 +16,13 @@ all ordered in time.
 As a 1st step let's generate 333 fake historical db files with bogus data by
 running included ruby script "./create_N_databases.rb". Its output is stored
 in form of 333 files under "fake_historical_bars_databases/" folder (I left
-those generated bogus .db files as a part of project, so you don't have to
+those generated bogus .db files as a part of the project, so you don't have to
 generate new ones).
 
 Next step is to look at the java source code:
   - class Read_all_huge_tables_without_join creates a new instance of "HistoricalDataPlayer" 
     and calls for "historical_data_replay" passing reference to algo, which will get "on_bar()"
-    callbacks along with from_epoch_s, to_epoch_s values which would say which interval we want
+    callbacks along with from_epoch_s, to_epoch_s values which defines the exact time interval we want
     to replay in our backtest scenario. Leaving values out and calling:
 
         // 1st example: replay all available data
@@ -35,6 +35,17 @@ Next step is to look at the java source code:
         hdbr = new HistoricalDataPlayer(algo);
         hdbr.historical_data_replay(historical_data_folder, from_epoch_s, to_epoch_s);
 
+  - class HistoricalDBReader handles single db file (opens db, select rows, holds the cursor (ResultSet rs) for single table from that file)
+  
+  - 
+
+  - and "the meat" of the project is inside class HistoricalDataPlayer!
+    HistoricalDataPlayer would create an array of HistoricalDBReaders like this:
+            ```List<HistoricalDBReader> db_readers = new ArrayList<HistoricalDBReader>();```
+    and then sort/iterate/process all the records from all the data readers  (search for: /* THE MEAT - main processing loop */ comment)
+
+  
+  
 Now let's run it, here's the end of the output (only covers 2nd example):
 
 > 2nd example: replay historical bars only from given time range [1231, 1233]

@@ -50,6 +50,8 @@ public class HistoricalDataPlayer {
                 db_readers.add(db_reader); // we only collect db_readers which have at least 1 row to read
             }
         }
+        
+        /* THE MEAT - main processing loop */
         try {
 
             // sort array according to: db_reader.rs.getInt("epoch_s")
