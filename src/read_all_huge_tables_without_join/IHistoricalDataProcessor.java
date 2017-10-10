@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package read_all_huge_tables_without_join;
 
-/**
- *
- * @author dmitry
- */
 public interface IHistoricalDataProcessor {
 
 // https://stackoverflow.com/a/43192755/7022062

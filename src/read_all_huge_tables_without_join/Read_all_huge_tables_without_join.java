@@ -45,15 +45,15 @@ public class Read_all_huge_tables_without_join {
 
         // 1st example: replay all available data
         System.out.println("1st example: replay all available data");
-        HistoricalDataPlayer hdbr = new HistoricalDataPlayer(algo);
-        hdbr.historical_data_replay(historical_data_folder);
+        HistoricalDataPlayer hdp = new HistoricalDataPlayer(algo);
+        hdp.historical_data_replay(historical_data_folder);
 
         // 2nd example: replay historical bars only from given time range
         long from_epoch_s = 1231;
         long to_epoch_s = 1233;
         System.out.println("\n2nd example: replay historical bars only from given time range [" + from_epoch_s + ", " + to_epoch_s + "]");
-        hdbr = new HistoricalDataPlayer(algo);
-        hdbr.historical_data_replay(historical_data_folder, from_epoch_s, to_epoch_s);
+        hdp = new HistoricalDataPlayer(algo);
+        hdp.historical_data_replay(historical_data_folder, from_epoch_s, to_epoch_s);
     }
 
 }
